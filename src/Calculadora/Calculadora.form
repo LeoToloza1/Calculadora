@@ -128,6 +128,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#xf7;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonDivisionActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonCE">
               <Properties>
@@ -208,7 +211,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
+                <Property name="text" type="java.lang.String" value="X"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonMultiplicarActionPerformed"/>
@@ -278,6 +281,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="-"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonMenosActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonUno">
               <Properties>

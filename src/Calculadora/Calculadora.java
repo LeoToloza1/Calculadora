@@ -93,6 +93,11 @@ public class Calculadora extends javax.swing.JFrame {
         botonDivision.setFont(new java.awt.Font("Corbel Light", 1, 24)); // NOI18N
         botonDivision.setForeground(new java.awt.Color(0, 0, 0));
         botonDivision.setText("÷");
+        botonDivision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDivisionActionPerformed(evt);
+            }
+        });
         panel.add(botonDivision);
 
         botonCE.setBackground(new java.awt.Color(255, 255, 255));
@@ -142,7 +147,7 @@ public class Calculadora extends javax.swing.JFrame {
         botonMultiplicar.setBackground(new java.awt.Color(255, 255, 255));
         botonMultiplicar.setFont(new java.awt.Font("Corbel Light", 1, 18)); // NOI18N
         botonMultiplicar.setForeground(new java.awt.Color(0, 0, 0));
-        botonMultiplicar.setText("*");
+        botonMultiplicar.setText("X");
         botonMultiplicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonMultiplicarActionPerformed(evt);
@@ -187,6 +192,11 @@ public class Calculadora extends javax.swing.JFrame {
         botonMenos.setFont(new java.awt.Font("Corbel Light", 1, 18)); // NOI18N
         botonMenos.setForeground(new java.awt.Color(0, 0, 0));
         botonMenos.setText("-");
+        botonMenos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMenosActionPerformed(evt);
+            }
+        });
         panel.add(botonMenos);
 
         botonUno.setBackground(new java.awt.Color(255, 255, 255));
@@ -406,7 +416,13 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void botonMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMultiplicarActionPerformed
         //boton de multiplicacion
-        
+          if (activado == true) {
+            num1 = Double.parseDouble(cadenaNumero); //parsear a double
+            etiquetaMuestra.setText(cadenaNumero + " X "); //concatenar un + al numero mostrado
+            cadenaNumero = ""; // la cadena de numeros vuelve a nada
+            operacion = "multiplicar";
+            activado = false; // puede volver a repetir la operacion
+          }
     }//GEN-LAST:event_botonMultiplicarActionPerformed
 
     private void botonMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMasActionPerformed
@@ -434,6 +450,26 @@ public class Calculadora extends javax.swing.JFrame {
         activado = true;
         
     }//GEN-LAST:event_botonIgualActionPerformed
+
+    private void botonMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenosActionPerformed
+          if (activado == true) {
+            num1 = Double.parseDouble(cadenaNumero); //parsear a double
+            etiquetaMuestra.setText(cadenaNumero + " - "); //concatenar un + al numero mostrado
+            cadenaNumero = ""; // la cadena de numeros vuelve a nada
+            operacion = "restar";
+            activado = false; // puede volver a repetir la operacion
+        }
+    }//GEN-LAST:event_botonMenosActionPerformed
+
+    private void botonDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDivisionActionPerformed
+          if (activado == true) {
+            num1 = Double.parseDouble(cadenaNumero); //parsear a double
+            etiquetaMuestra.setText(cadenaNumero + " ÷ "); //concatenar un + al numero mostrado
+            cadenaNumero = ""; // la cadena de numeros vuelve a nada
+            operacion = "dividir";
+            activado = false; // puede volver a repetir la operacion
+        }
+    }//GEN-LAST:event_botonDivisionActionPerformed
 
     /**
      * @param args the command line arguments
