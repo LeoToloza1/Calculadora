@@ -7,6 +7,7 @@ package Calculadora;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -81,12 +82,22 @@ public class Calculadora extends javax.swing.JFrame {
         botonC.setFont(new java.awt.Font("Corbel Light", 1, 18)); // NOI18N
         botonC.setForeground(new java.awt.Color(0, 0, 0));
         botonC.setText("C");
+        botonC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCActionPerformed(evt);
+            }
+        });
         panel.add(botonC);
 
         botonRaiz.setBackground(new java.awt.Color(255, 255, 255));
         botonRaiz.setFont(new java.awt.Font("Corbel Light", 1, 18)); // NOI18N
         botonRaiz.setForeground(new java.awt.Color(0, 0, 0));
         botonRaiz.setText("√");
+        botonRaiz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRaizActionPerformed(evt);
+            }
+        });
         panel.add(botonRaiz);
 
         botonDivision.setBackground(new java.awt.Color(255, 255, 255));
@@ -247,6 +258,11 @@ public class Calculadora extends javax.swing.JFrame {
         botonNegativo.setFont(new java.awt.Font("Corbel Light", 1, 18)); // NOI18N
         botonNegativo.setForeground(new java.awt.Color(0, 0, 0));
         botonNegativo.setText("+/-");
+        botonNegativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNegativoActionPerformed(evt);
+            }
+        });
         panel.add(botonNegativo);
 
         botonCero.setBackground(new java.awt.Color(255, 255, 255));
@@ -264,6 +280,11 @@ public class Calculadora extends javax.swing.JFrame {
         botonPunto.setFont(new java.awt.Font("Corbel Light", 1, 18)); // NOI18N
         botonPunto.setForeground(new java.awt.Color(0, 0, 0));
         botonPunto.setText(".");
+        botonPunto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonPuntoActionPerformed(evt);
+            }
+        });
         panel.add(botonPunto);
 
         botonIgual.setBackground(new java.awt.Color(255, 255, 255));
@@ -315,7 +336,12 @@ public class Calculadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCEActionPerformed
-        // boton para volver al numero cero
+        int tamaño = cadenaNumero.length();
+        if (tamaño >0 && tamaño == 1) {
+            cadenaNumero = "0";
+        }else {
+            cadenaNumero = cadenaNumero.substring(0 , cadenaNumero.length() -1);
+        }etiquetaNumero.setText(cadenaNumero);
     }//GEN-LAST:event_botonCEActionPerformed
 
     private void botonUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUnoActionPerformed
@@ -337,7 +363,7 @@ public class Calculadora extends javax.swing.JFrame {
             cadenaNumero += "2";
         }
         etiquetaNumero.setText(cadenaNumero);
-        activado = true;        
+        activado = true;
     }//GEN-LAST:event_botonDosActionPerformed
 
     private void botonTresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTresActionPerformed
@@ -346,7 +372,7 @@ public class Calculadora extends javax.swing.JFrame {
             cadenaNumero = "3";
         }else cadenaNumero += "3";
         etiquetaNumero.setText(cadenaNumero);
-        activado = true;  
+        activado = true; 
     }//GEN-LAST:event_botonTresActionPerformed
 
     private void botonCuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCuatroActionPerformed
@@ -439,16 +465,43 @@ public class Calculadora extends javax.swing.JFrame {
     private void botonIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIgualActionPerformed
       //boton igual
         double num2;
-        if (operacion.equals("sumar")) {
-            num2 = Double.parseDouble(cadenaNumero);
-            resultado = num1 + num2;
-            etiquetaNumero.setText(String.format("% .2f", resultado));
-            cadenaNumero = String.valueOf(resultado);
-            operacion = "nula";
+        switch (operacion) {
+            case "sumar":
+                num2 = Double.parseDouble(cadenaNumero);
+                resultado = num1 + num2;
+                etiquetaNumero.setText(String.format("% .2f", resultado));
+                cadenaNumero = String.valueOf(resultado);
+                operacion = "nula";
+                break;
+            case "restar":
+                num2 = Double.parseDouble(cadenaNumero);
+                resultado = num1 - num2;
+                etiquetaNumero.setText(String.format("% .2f", resultado));
+                cadenaNumero = String.valueOf(resultado);
+                operacion = "nula";
+                break;
+            case "dividir":
+                num2 = Double.parseDouble(cadenaNumero);
+                if (num2 == 0) {
+                    JOptionPane.showMessageDialog(this, "No se puede dividir por cero, repita la operacion ");
+                } else {
+                    resultado = num1 / num2;
+                    etiquetaNumero.setText(String.format("% .2f", resultado));
+                    cadenaNumero = String.valueOf(resultado);
+                    operacion = "nula";
+                }
+                break;
+            case "multiplicar":
+                num2 = Double.parseDouble(cadenaNumero);
+                resultado = num1 * num2;
+                etiquetaNumero.setText(String.format("% .2f", resultado));
+                cadenaNumero = String.valueOf(resultado);
+                operacion = "nula";
+                break;
         }
         etiquetaMuestra.setText("");
         activado = true;
-        
+        punto = false;
     }//GEN-LAST:event_botonIgualActionPerformed
 
     private void botonMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenosActionPerformed
@@ -463,14 +516,58 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void botonDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDivisionActionPerformed
           if (activado == true) {
-            num1 = Double.parseDouble(cadenaNumero); //parsear a double
-            etiquetaMuestra.setText(cadenaNumero + " ÷ "); //concatenar un + al numero mostrado
+               num1 = Double.parseDouble(cadenaNumero); //parsear a double
+            etiquetaMuestra.setText(cadenaNumero + " ÷ "); //concatenar un / al numero mostrado
             cadenaNumero = ""; // la cadena de numeros vuelve a nada
             operacion = "dividir";
             activado = false; // puede volver a repetir la operacion
         }
     }//GEN-LAST:event_botonDivisionActionPerformed
 
+    private void botonRaizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRaizActionPerformed
+        num1 = Double.parseDouble(cadenaNumero);
+        etiquetaMuestra.setText("sqrt("+cadenaNumero+")");
+        resultado = Math.sqrt(num1);
+        etiquetaNumero.setText(String.format("% .3f", resultado));
+        //---- convertir el valor a cadena-----//
+        cadenaNumero = String.valueOf(resultado);
+        
+    }//GEN-LAST:event_botonRaizActionPerformed
+
+    private void botonPuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPuntoActionPerformed
+        if (punto = true) {
+            if (cadenaNumero.equals("")) {
+                cadenaNumero = "0.";
+            } else {
+                cadenaNumero += ".";
+            }
+            etiquetaNumero.setText(cadenaNumero);
+                punto = false;
+        }
+    }//GEN-LAST:event_botonPuntoActionPerformed
+
+    private void botonNegativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNegativoActionPerformed
+        //"convierte" en negativo el numero seleccionado//
+        if (cadenaNumero.charAt(0) != '-') { 
+            cadenaNumero = '-'+ cadenaNumero;
+        }else {
+            cadenaNumero= cadenaNumero.substring(1, cadenaNumero.length());
+        }
+        etiquetaMuestra.setText(cadenaNumero);
+    }//GEN-LAST:event_botonNegativoActionPerformed
+
+    private void botonCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCActionPerformed
+       etiquetaNumero.setText("0");
+       etiquetaMuestra.setText("");
+       cadenaNumero = "";
+       operacion = "nula";
+       activado = true;
+       punto = true;
+    }//GEN-LAST:event_botonCActionPerformed
+
+    
+    
+    
     /**
      * @param args the command line arguments
      * @throws java.lang.ClassNotFoundException

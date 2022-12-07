@@ -100,6 +100,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="C"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonRaiz">
               <Properties>
@@ -114,6 +117,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x221a;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonRaizActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonDivision">
               <Properties>
@@ -366,6 +372,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="+/-"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonNegativoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonCero">
               <Properties>
@@ -397,6 +406,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonPuntoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonIgual">
               <Properties>
